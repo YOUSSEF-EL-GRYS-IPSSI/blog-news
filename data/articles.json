@@ -1,15 +1,15 @@
 [
     {
-        "id": 1,
+        "id": "1",
         "title": "Spotify va utiliser l&rsquo;IA pour traduire les podcasts",
         "image": "https:\/\/cdn.lesnumeriques.com\/optim\/news\/20\/209622\/c442bf6a-spotify-supprime-des-dizaines-de-milliers-de-chansons-generees-par-ia__1200_900__614-12-6502-3332.jpg",
-        "category": "technologie",
-        "content": "La plateforme Spotify va bient&ocirc;t utiliser l&rsquo;intelligence artificielle (IA) pour traduire les podcasts, a annonc&eacute; la soci&eacute;t&eacute;, lundi 25 septembre, dans le cadre d&rsquo;un partenariat avec OpenAI."
+        "category": "technology",
+        "content": "La plateforme Spotify va bient&ocirc;t utiliser l&rsquo;intelligence artificielle (IA) pour traduire les podcasts, a annonc&eacute; la soci&eacute;t&eacute;, lundi 25 septembre, dans le cadre d&rsquo;un partenariat avec OpenAI.\r\nMorocco"
     },
     {
-        "id": 2,
-        "title": "Trois mesures que les banques peuvent prendre pour favoriser l&rsquo;action climatique",
-        "image": "https://www.forbes.fr/wp-content/uploads/2023/08/financial-crisis-g5b2c3c720-1280.jpg",
+        "id": "2",
+        "title": "Trois mesures que les banques peuvent prendre pour favoriser l&rsquo;action climatique ;)",
+        "image": "https:\/\/www.forbes.fr\/wp-content\/uploads\/2023\/08\/financial-crisis-g5b2c3c720-1280.jpg",
         "category": "nature",
         "content": "La communaut&eacute; mondiale a adopt&eacute; l&rsquo;Accord de Paris sur le climat il y a six ans dans le but de r&eacute;duire consid&eacute;rablement les &eacute;missions de carbone et de freiner le changement climatique. Pendant cette p&eacute;riode, les 60 plus grandes banques du monde ont investi un montant stup&eacute;fiant de 5 500 milliards de dollars (5 000 milliards d&rsquo;euros) dans l&rsquo;industrie des combustibles fossiles. Qu&rsquo;il s&rsquo;agisse de l&rsquo;extraction &agrave; ciel ouvert du charbon ou de la fracturation hydraulique du gaz naturel, ces investissements alimentent litt&eacute;ralement le feu de notre plan&egrave;te."
     },
@@ -22,23 +22,16 @@
     },
     {
         "id": 4,
-        "title": "Whisper Yachts r&eacute;concilie luxe et &eacute;cologie",
-        "image": "https:\/\/www.forbes.fr\/wp-content\/uploads\/2023\/09\/sdehyj.jpg",
-        "category": "technologie",
-        "content": "Nouvelle &eacute;tape vers la commercialisation de leurs yachts &eacute;co-responsables et autonomes pour Whisper Yachts : la soci&eacute;t&eacute; innovante fran&ccedil;aise participe &agrave; la messe mondiale du Yachting &agrave; Cannes du 12 au 17 septembre 2023. Tour d&rsquo;horizon d&rsquo;une entreprise disruptive avec son fondateur passionn&eacute;, Guy Marchal."
-    },
-    {
-        "id": 5,
         "title": "Quelle strat&eacute;gie et quels produits d&rsquo;investissement pour la g&eacute;n&eacute;ration Z ?",
         "image": "https:\/\/www.forbes.fr\/wp-content\/uploads\/2023\/07\/img-7406-1536x1152.jpeg",
         "category": "technologie",
         "content": "La g&eacute;n&eacute;ration Z, compos&eacute;e des jeunes n&eacute;s entre la fin des ann&eacute;es 1990 et le d&eacute;but des ann&eacute;es 2010, est en train de devenir une force &eacute;conomique majeure. Avec l&rsquo;acc&egrave;s &agrave; l&rsquo;information et une sensibilit&eacute; accrue &agrave; l&rsquo;&eacute;gard de la durabilit&eacute; environnementale, la g&eacute;n&eacute;ration Z recherche des strat&eacute;gies d&rsquo;investissement rentables, liquides et &eacute;cologiquement durables. Dans cet article, nous explorerons les trois meilleures strat&eacute;gies et produits d&rsquo;investissement accessibles &agrave; la g&eacute;n&eacute;ration Z en 2023. Nous examinerons leur rentabilit&eacute; potentielle ainsi que leur impact sur la plan&egrave;te."
     },
     {
-        "id": 6,
+        "id": "5",
         "title": "Amazon pr&eacute;voit d&rsquo;investir jusqu&rsquo;&agrave; quatre milliards de dollars dans la startup d&rsquo;IA Anthropic",
         "image": "https:\/\/www.forbes.fr\/wp-content\/uploads\/2023\/02\/gettyimages-1246435461-1536x1024.jpg.webp",
-        "category": "technologie",
+        "category": "politique",
         "content": "Lundi 25 septembre, Amazon a annonc&eacute; &ecirc;tre pr&ecirc;t &agrave; investir jusqu&rsquo;&agrave; quatre milliards de dollars dans la startup d&rsquo;intelligence artificielle Anthropic, dans le cadre d&rsquo;un partenariat strat&eacute;gique. Le g&eacute;ant de la technologie bataille f&eacute;rocement avec des entreprises comme Google, Microsoft et Nvidia pour &ecirc;tre le leader de l&rsquo;innovation en mati&egrave;re d&rsquo;IA."
     }
 ]
