@@ -148,3 +148,13 @@ footer {
 .p-10{
     padding: 10px;
 }
+
+/**page 404***/
+
+.page404{
+    margin: 0 auto;
+    width: 50%;
+}
+.page404 img{
+    width: 100%;
+}

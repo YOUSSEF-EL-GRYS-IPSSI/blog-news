@@ -1,20 +1,19 @@
 <?php
-$filename = __DIR__ . '/data/articles.json';
-$articles = [];
+
+$pdo = require_once 'database.php';
+$statement = $pdo->prepare('SELECT * FROM article WHERE id=:id');
+
 $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_SPECIAL_CHARS);
 $id = $_GET['id'] ?? '';
 
 if (!$id) {
     header('Location: /');
 } else {
-    if (file_exists($filename)) {
-        $articles = json_decode(file_get_contents($filename), true) ?? [];
-        $articleIndex  = array_search($id, array_column($articles, 'id'));
-        $article = $articles[$articleIndex];
-
-        // echo "<pre>";
-        // print_r($article['image']);
-        // echo "</pre>";
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+    $article = $statement->fetch();
+    if (!$article) {
+        header('Location: 404/404.php');
     }
 }
 

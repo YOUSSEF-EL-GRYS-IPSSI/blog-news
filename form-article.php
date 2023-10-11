@@ -1,12 +1,12 @@
 <?php
+$pdo = require_once 'database.php';
+
+$statement = $pdo->prepare('INSERT INTO ');
 
 const ERROR_REQUIRED = 'Veuillez renseigner ce champs';
 const ERROR_TITLE_TOO_SHORT = 'Le titre est trop court';
 const ERROR_CONTENT_TOO_SHORT = 'L\'article est trop court';
 const ERROR_IMAGE_URL = 'L\'image doit être une url valide';
-
-$filename = __DIR__ . '/data/articles.json';
-
 
 $errors = [
     'title' => '',
@@ -19,9 +19,7 @@ $image = '';
 $content = '';
 $title = '';
 
-if (file_exists($filename)) {
-    $articles = json_decode(file_get_contents($filename), true) ?? [];
-}
+
 
 
 $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_SPECIAL_CHARS);
