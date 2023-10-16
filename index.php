@@ -1,12 +1,6 @@
 <?php
-$pdo = require_once 'database.php';
-
-$statement = $pdo->prepare('SELECT * FROM article');
-
-$statement->execute();
-
-$articles = $statement->fetchAll();
-
+$articleDB = require_once './database/models/ArticleDB.php';
+$articles = $articleDB->fetchAll();
 
 $categories = [];
 
@@ -19,7 +13,11 @@ $selectedCat = $_GET['cat'] ?? '';
 if (count($articles)) {
 
     $cattmp = array_map(fn ($a) => $a['category'], $articles);
+    // echo "<pre>";
+    // print_r($cattmp);
+    // echo "</pre>";
     $categories = array_reduce($cattmp, function ($acc, $cat) {
+
 
         if (isset($acc[$cat])) {
             $acc[$cat]++;
@@ -28,7 +26,9 @@ if (count($articles)) {
         }
         return $acc;
     }, []);
-
+    // echo "<pre>";
+    // print_r($categories);
+    // echo "</pre>";
 
     $articlePerCategories = array_reduce($articles, function ($acc, $articles) {
 
@@ -39,6 +39,10 @@ if (count($articles)) {
         }
         return $acc;
     }, []);
+
+    // echo "<pre>";
+    // print_r($articlePerCategories);
+    // echo "</pre>";
 }
 
 ?>

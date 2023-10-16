@@ -1,7 +1,7 @@
 <?php
-$pdo = require_once 'database.php';
+$articleDB = require_once './database/models/ArticleDB.php';
 
-$statement = $pdo->prepare('INSERT INTO ');
+
 
 const ERROR_REQUIRED = 'Veuillez renseigner ce champs';
 const ERROR_TITLE_TOO_SHORT = 'Le titre est trop court';
@@ -26,12 +26,11 @@ $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_SPECIAL_CHARS);
 $id = $_GET['id'] ?? '';
 
 if ($id) {
-    $articleIndex = array_search($id, array_column($articles, 'id'));
-    $articles = $articles[$articleIndex];
-    $title = $articles['title'];
-    $image = $articles['image'];
-    $category = $articles['category'];
-    $content = $articles['content'];
+   $article = $articleDB->fetchOne($id);
+    $title = $article['title'];
+    $image = $article['image'];
+    $category = $article['category'];
+    $content = $article['content'];
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -75,38 +74,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 
-    $articles = json_decode(file_get_contents($filename), true);
-
-    if (!$articles) {
-        $articles = [];
-    }
+  
 
     if (empty(array_filter($errors, fn ($e) => $e !== ''))) {
         if ($id) {
-            // Trouver l'index de l'article en utilisant l'ID
-            $articleIndex = array_search($id, array_column($articles, 'id'));
+            $article['title'] = $title;
+            $article['image'] = $image;
+            $article['category'] = $category;
+            $article['content'] = $content ;
+            
+            $articleDB->updateOne($article);
 
-            // Si l'article est trouvé, le mettre à jour
-            if ($articleIndex !== false) {
-                $articles[$articleIndex] = [
-                    'id'       => $id,
-                    'title'    => $title,
-                    'image'    => $image,
-                    'category' => $category,
-                    'content'  => $content
-                ];
-            }
         } else {
-            // Ajouter un nouvel article
-            $articles[] = [
-                'id'       => count($articles) + 1, // Pour l'instant, cela assigne l'ID basé sur la longueur du tableau
-                'title'    => $title,
-                'image'    => $image,
-                'category' => $category,
-                'content'  => $content
-            ];
+           
+            $articleDB->createOne([
+                'title'=> $title,
+                'content'=> $content,
+                'category'=> $category,
+                'image'=> $image
+            ]);
+           
         }
-        file_put_contents($filename, json_encode($articles));
+       
         header('Location: /');
     }
 }
@@ -120,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <?php require_once 'includes/head.php' ?>
-    <link rel="stylesheet" href="public/css/form-article.css">
+    <!-- <link rel="stylesheet" href="public/css/form-article.css"> -->
     <title><?= $id ? 'Modifier' : 'Créer' ?> un article</title>
 </head>
 
@@ -154,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <select name="category" id="category">
                             <option <?= !$category || $category === 'technologie' ? 'selected' : '' ?> value="technology">Technologie</option>
-                            <option <?= $category === 'nature' ? 'selected' : '' ?> value="nature">Nature</option>
+                            <option <?= $category === 'environnement' ? 'selected' : '' ?> value="environnement">Environnement</option>
                             <option <?= $category === 'politique' ? 'selected' : '' ?> value="politique">Politique</option>
                         </select>
                         <?php if ($errors['category']) :  ?>

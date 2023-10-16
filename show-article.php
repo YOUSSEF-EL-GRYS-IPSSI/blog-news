@@ -1,7 +1,7 @@
 <?php
 
-$pdo = require_once 'database.php';
-$statement = $pdo->prepare('SELECT * FROM article WHERE id=:id');
+$articleDB = require_once './database/models/ArticleDB.php';
+
 
 $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_SPECIAL_CHARS);
 $id = $_GET['id'] ?? '';
@@ -9,9 +9,8 @@ $id = $_GET['id'] ?? '';
 if (!$id) {
     header('Location: /');
 } else {
-    $statement->bindValue(':id', $id, PDO::PARAM_INT);
-    $statement->execute();
-    $article = $statement->fetch();
+    $article = $articleDB->fetchOne($id);
+
     if (!$article) {
         header('Location: 404/404.php');
     }
