@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/database/database.php';
 $articleDB = require_once './database/models/ArticleDB.php';
 
 

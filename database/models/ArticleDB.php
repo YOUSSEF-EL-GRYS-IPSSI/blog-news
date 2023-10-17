@@ -1,6 +1,5 @@
 <?php
 
-$pdo = require_once './database/database.php';
 
 class ArticleDB
 {
@@ -29,7 +28,7 @@ class ArticleDB
         return $this->statementReadAll->fetchAll();
     }
 
-    public function fetchOne(int $id)
+    public function fetchOne($id)
     {
         $this->statementReadOne->bindValue(':id', $id);
         $this->statementReadOne->execute();

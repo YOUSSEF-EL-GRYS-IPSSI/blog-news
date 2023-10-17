@@ -1,7 +1,11 @@
 <?php
-$articleDB = require_once './database/models/ArticleDB.php';
-$articles = $articleDB->fetchAll();
 
+require __DIR__ .'/database/database.php';
+require __DIR__ . '/database/security.php';
+
+$currentUser = isloggedin();
+$articleDB = require_once __DIR__ . '/database/models/ArticleDB.php';
+$articles = $articleDB->fetchAll();
 $categories = [];
 
 
