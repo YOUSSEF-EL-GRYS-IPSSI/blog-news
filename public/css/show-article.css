@@ -35,7 +35,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.617);
     z-index: 1000;
 }
 
@@ -48,8 +48,38 @@
     padding: 20px;
     border-radius: 5px;
     text-align: center;
+    width: 400px;
 }
 
 .modal-content button {
     margin: 10px;
+}
+
+button#confirmDelete {
+    background: #0066ff;
+    border: none;
+    color: #fff;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+button#cancelDelete {
+    background: #ff0000;
+    border: none;
+    color: #fff;
+    padding: 5px 15px;
+    cursor: pointer;
+    
+}
+
+.delete-message{
+    width: 90px;
+    margin: 0 auto;
+}
+.article-author p{
+    text-align: right;
+    padding: 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-style: italic;
 }

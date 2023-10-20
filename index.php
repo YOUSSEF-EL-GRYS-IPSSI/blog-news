@@ -1,11 +1,12 @@
 <?php
 
-require __DIR__ .'/database/database.php';
+require __DIR__ . '/database/database.php';
 require __DIR__ . '/database/security.php';
 
 $currentUser = isloggedin();
 $articleDB = require_once __DIR__ . '/database/models/ArticleDB.php';
 $articles = $articleDB->fetchAll();
+
 $categories = [];
 
 
@@ -62,6 +63,11 @@ if (count($articles)) {
 </head>
 
 <body>
+
+    <div id="loadingScreen" class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
     <div class="container">
         <?php require_once 'includes/header.php' ?>
         <div class="content">
@@ -90,6 +96,11 @@ if (count($articles)) {
                                             <div class="img-container" style="background-image:url(<?= $a['image'] ?>"></div>
                                         </div>
                                         <h3><?= $a['title'] ?></h3>
+                                        <?php if ($a['author']) : ?>
+                                            <div class="article-author">
+                                                <p><?= $a['firstname'].' '.$a['lastname'] ?></p>
+                                            </div>
+                                        <?php endif; ?>
                                     </a>
                                 <?php endforeach; ?>
                             </div>

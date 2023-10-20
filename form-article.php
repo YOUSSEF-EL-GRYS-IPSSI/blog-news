@@ -1,9 +1,13 @@
 <?php
 require_once __DIR__ . '/database/database.php';
+require_once __DIR__ .'/database/security.php';
+$currentUser = isloggedin();
+
+if (!$currentUser) {
+    header('Location: /');
+}
+
 $articleDB = require_once './database/models/ArticleDB.php';
-
-
-
 const ERROR_REQUIRED = 'Veuillez renseigner ce champs';
 const ERROR_TITLE_TOO_SHORT = 'Le titre est trop court';
 const ERROR_CONTENT_TOO_SHORT = 'L\'article est trop court';
@@ -28,6 +32,9 @@ $id = $_GET['id'] ?? '';
 
 if ($id) {
    $article = $articleDB->fetchOne($id);
+   if($article['author'] !== $currentUser['id']){
+    header('Location: /');
+   }
     $title = $article['title'];
     $image = $article['image'];
     $category = $article['category'];
@@ -83,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $article['image'] = $image;
             $article['category'] = $category;
             $article['content'] = $content ;
-            
+            $article['author'] = $currentUser['id'] ;
             $articleDB->updateOne($article);
 
         } else {
@@ -92,7 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'title'=> $title,
                 'content'=> $content,
                 'category'=> $category,
-                'image'=> $image
+                'image'=> $image,
+                'author'=> $currentUser['id']
             ]);
            
         }

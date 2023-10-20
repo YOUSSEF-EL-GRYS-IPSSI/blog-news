@@ -65,15 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if (empty(array_filter($errors, fn ($e) => $e !== ''))) {
-        $statement = $pdo->prepare('INSERT INTO user VALUES (DEFAULT,:firstname,:lastname,:email,:password)');
         
-        $hashPassword = password_hash($password, PASSWORD_ARGON2ID);
-        $statement->bindValue(':firstname', $firstname);
-        $statement->bindValue(':lastname', $lastname);
-        $statement->bindValue(':email', $email);
-        $statement->bindValue(':password', $hashPassword);
-        
-        $statement->execute();
          header('Location: /');
     }
 }
