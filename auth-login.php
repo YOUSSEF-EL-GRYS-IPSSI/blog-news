@@ -1,6 +1,7 @@
 <?php
 
-$pdo = require_once './database/database.php';
+require __DIR__ . '/database/database.php';
+$authDB  = require_once './database/security.php';
 
 const ERROR_REQUIRED           = 'Veuillez renseigner ce champs';
 const ERROR_PASSWORD_TOO_SHORT = 'Le mot de passe doit faire au moins 6 caractères';
@@ -44,12 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if (empty(array_filter($errors, fn ($e) => $e !== ''))) {
-
-        $statementUser = $pdo->prepare('SELECT * FROM user WHERE email=:email');
-        $statementUser->bindValue(':email', $email);
-        $statementUser->execute();
-        $user = $statementUser->fetch();
-
+       
+        $user = $authDB->getUserFromEmail($email);
 
         if (!$user) {
             $errors['email'] = ERROR_EMAIL_UNKOWN;
@@ -58,11 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $errors['password'] = ERROR_PASSWORD_MISMATCH;
             }else{
-                $sessionStatement = $pdo->prepare('INSERT INTO session VALUES (DEFAULT,:userid)') ;
-                $sessionStatement->bindValue(':userid', $user['id']);
-                $sessionStatement->execute();
-                $sessionId = $pdo->lastInsertId();
-                setcookie('session', $sessionId, time() + 60 * 60 * 24 * 14, '', '', false, true);
+               $authDB->login($user['id']);
                 header('Location: /');
             }
         }

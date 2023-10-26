@@ -1,6 +1,7 @@
 <?php
 
 $pdo = require_once './database/database.php';
+$authDB = require_once './database/security.php';
 
 const ERROR_REQUIRED           = 'Veuillez renseigner ce champs';
 const ERROR_TOO_SHORT          = 'ce champ est trop court';
@@ -32,41 +33,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     $confirmpassword = $_POST['confirmpassword'] ?? '';
 
-    if(!$firstname){
+    if (!$firstname) {
         $errors['firstname'] = ERROR_REQUIRED;
-    }elseif(mb_strlen($firstname) < 2){
+    } elseif (mb_strlen($firstname) < 2) {
         $errors['firstname'] = ERROR_TOO_SHORT;
     }
 
-    
-    if(!$lastname){
+
+    if (!$lastname) {
         $errors['lastname'] = ERROR_REQUIRED;
-    }elseif(mb_strlen($lastname) < 2){
+    } elseif (mb_strlen($lastname) < 2) {
         $errors['lastname'] = ERROR_TOO_SHORT;
     }
 
-    if(!$email){
+    if (!$email) {
         $errors['email'] = ERROR_REQUIRED;
-    }elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = ERROR_EMAIL_INVALID;
     }
 
     if (!$password) {
         $errors['password'] = ERROR_REQUIRED;
-    }elseif (mb_strlen($password) < 6) {
+    } elseif (mb_strlen($password) < 6) {
         $errors['password'] = ERROR_PASSWORD_TOO_SHORT;
     }
 
     if (!$confirmpassword) {
         $errors['confirmpassword'] = ERROR_REQUIRED;
-    }elseif ($confirmpassword !== $password) {
+    } elseif ($confirmpassword !== $password) {
         $errors['confirmpassword'] = ERROR_PASSWORD_MISMATCH;
     }
 
 
     if (empty(array_filter($errors, fn ($e) => $e !== ''))) {
-        
-         header('Location: /');
+        $authDB->register([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'email' => $email,
+            'password' => $password
+        ]);
+        header('Location: /');
     }
 }
 

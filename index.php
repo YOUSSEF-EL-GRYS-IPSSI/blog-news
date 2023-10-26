@@ -1,9 +1,11 @@
 <?php
 
 require __DIR__ . '/database/database.php';
-require __DIR__ . '/database/security.php';
 
-$currentUser = isloggedin();
+$authDB = require __DIR__ .'/database/security.php';
+
+
+$currentUser = $authDB->isloggedin();
 $articleDB = require_once __DIR__ . '/database/models/ArticleDB.php';
 $articles = $articleDB->fetchAll();
 
@@ -64,7 +66,7 @@ if (count($articles)) {
 
 <body>
 
-    <div id="loadingScreen" class="loading-screen">
+    <div id="loadingScreen" class="loading-screen"> 
         <div class="spinner"></div>
     </div>
 

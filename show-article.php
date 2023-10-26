@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/database/database.php';
 
-require_once __DIR__ . '/database/security.php';
-$currentUser = isloggedin();
+$authDB = require_once __DIR__ . '/database/security.php';
+$currentUser = $authDB->isloggedin();
 
 
 $articleDB = require_once './database/models/ArticleDB.php';

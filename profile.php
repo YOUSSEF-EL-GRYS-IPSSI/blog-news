@@ -1,11 +1,11 @@
 <?php
 require_once __DIR__ . '/database/database.php';
-require_once __DIR__ . '/database/security.php';
+$authDB = require_once __DIR__ . '/database/security.php';
 $articleDB = require_once './database/models/ArticleDB.php';
 
 $articles = [];
 
-$currentUser = isloggedin();
+$currentUser = $authDB->isloggedin();
 
 if (!$currentUser) {
     header('Location: /');

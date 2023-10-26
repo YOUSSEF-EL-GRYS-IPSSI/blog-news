@@ -1,13 +1,17 @@
 <?php
 require_once __DIR__ . '/database/database.php';
-require_once __DIR__ .'/database/security.php';
-$currentUser = isloggedin();
+$authDB = require_once __DIR__ . '/database/security.php';
 
+$currentUser = $authDB->isloggedin();
+
+
+// print_r($article);
 if (!$currentUser) {
     header('Location: /');
 }
 
 $articleDB = require_once './database/models/ArticleDB.php';
+
 const ERROR_REQUIRED = 'Veuillez renseigner ce champs';
 const ERROR_TITLE_TOO_SHORT = 'Le titre est trop court';
 const ERROR_CONTENT_TOO_SHORT = 'L\'article est trop court';
@@ -31,10 +35,10 @@ $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_SPECIAL_CHARS);
 $id = $_GET['id'] ?? '';
 
 if ($id) {
-   $article = $articleDB->fetchOne($id);
-   if($article['author'] !== $currentUser['id']){
-    header('Location: /');
-   }
+    $article = $articleDB->fetchOne($id);
+    if ($article['author'] !== $currentUser['id']) {
+        header('Location: /');
+    }
     $title = $article['title'];
     $image = $article['image'];
     $category = $article['category'];
@@ -82,29 +86,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 
-  
 
     if (empty(array_filter($errors, fn ($e) => $e !== ''))) {
         if ($id) {
             $article['title'] = $title;
             $article['image'] = $image;
             $article['category'] = $category;
-            $article['content'] = $content ;
-            $article['author'] = $currentUser['id'] ;
+            $article['content'] = $content;
+            $article['author'] = $currentUser['id'];
             $articleDB->updateOne($article);
-
+            
         } else {
-           
+
             $articleDB->createOne([
-                'title'=> $title,
-                'content'=> $content,
-                'category'=> $category,
-                'image'=> $image,
-                'author'=> $currentUser['id']
+                'title' => $title,
+                'content' => $content,
+                'category' => $category,
+                'image' => $image,
+                'author' => $currentUser['id']
             ]);
-           
         }
-       
+
         header('Location: /');
     }
 }
@@ -118,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <?php require_once 'includes/head.php' ?>
-    <!-- <link rel="stylesheet" href="public/css/form-article.css"> -->
+    <link rel="stylesheet" href="public/css/form-article.css">
     <title><?= $id ? 'Modifier' : 'Créer' ?> un article</title>
 </head>
 
@@ -170,8 +172,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-action">
                         <a href="/" class="btn btn-secondary" type="button">Annuler</a>
-                       
-                        <button class="btn btn-primary" type="submit"><?= $id ? 'Mettre à jour' : 'Sauvegarder'?></button>
+
+                        <button class="btn btn-primary" type="submit"><?= $id ? 'Mettre à jour' : 'Sauvegarder' ?></button>
                     </div>
                 </form>
             </div>

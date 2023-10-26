@@ -1,15 +1,25 @@
 
-document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(function () {
-        let loadingScreen = document.getElementById("loadingScreen");
-        if (loadingScreen) {
-            loadingScreen.style.display = "none";
-        }
-    }, 1000);  // 5000ms équivaut à 5 secondes
-});
 
 
-document.addEventListener('DOMContentLoaded', function () {
+const headerMobileButton = document.querySelector('.header-mobile-icon');
+const headerMobileList = document.querySelector('.header-mobile-list');
+console.log(headerMobileButton);
+headerMobileButton.addEventListener('click', () => {
+    headerMobileList.classList.toggle('show')
+})
+
+
+
+setTimeout(function () {
+    let loadingScreen = document.getElementById("loadingScreen");
+    if (loadingScreen) {
+        loadingScreen.style.display = "none";
+    }
+}, 1000);  
+
+
+
+
     const deleteButton = document.getElementById('deleteButton');
     const deleteModal = document.getElementById('deleteModal');
     const confirmDelete = document.getElementById('confirmDelete');
@@ -28,4 +38,12 @@ document.addEventListener('DOMContentLoaded', function () {
     cancelDelete.addEventListener('click', function () {
         deleteModal.style.display = 'none';
     });
-});
+
+
+
+
+
+
+
+
+
