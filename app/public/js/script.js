@@ -8,7 +8,7 @@ headerMobileButton.addEventListener('click', () => {
     headerMobileList.classList.toggle('show')
 })
 
-
+// 7zhxRUrdqXhc 
 
 setTimeout(function () {
     let loadingScreen = document.getElementById("loadingScreen");
