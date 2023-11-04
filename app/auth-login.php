@@ -1,7 +1,7 @@
 <?php
 
 require __DIR__ . '/database/database.php';
-$authDB  = require_once './database/security.php';
+$authDB  = require_once __DIR__ . '/database/security.php';
 
 const ERROR_REQUIRED           = 'Veuillez renseigner ce champs';
 const ERROR_PASSWORD_TOO_SHORT = 'Le mot de passe doit faire au moins 6 caractères';
