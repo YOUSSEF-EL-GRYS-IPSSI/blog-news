@@ -2,13 +2,14 @@
 
 
 $dns = 'mysql:host=localhost;dbname=blog_news';
-$user = getenv('DB_USER');
-$pwd = getenv('DB_PWD');
+$user = 'root';
+$pwd = 'SLtWgwZVwq1s';
 
-// $user = 'root';
-// $pwd = 'Momo78955';
+// $user = getenv('DB_USER');
+// $pwd = getenv('DB_PWD');
 // echo "User: " . getenv('DB_USER') . "<br>";
 // echo "Pwd: " . getenv('DB_PWD') . "<br>";
+
 
 
 
