@@ -11,16 +11,25 @@ $pwd = 'SLtWgwZVwq1s';
 // echo "Pwd: " . getenv('DB_PWD') . "<br>";
 
 
-
-
 try {
-    $pdo = new PDO($dns, $user, $pwd,[
+    $pdo = new PDO($dns, $user, $pwd, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ]);
 } catch (PDOException $e) {
-   throw new Exception($e->getMessage()) ;
+    echo "Erreur de connexion : " . $e->getMessage();
+    exit;
 }
+
+
+// try {
+//     $pdo = new PDO($dns, $user, $pwd,[
+//         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+//         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+//     ]);
+// } catch (PDOException $e) {
+//    throw new Exception($e->getMessage()) ;
+// }
 
 return $pdo;
 ?>
