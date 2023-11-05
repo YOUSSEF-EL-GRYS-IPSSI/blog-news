@@ -3,7 +3,7 @@
 
 $dns = 'mysql:host=localhost;dbname=blog_news';
 $user = 'root';
-$pwd = 'SLtWgwZVwq1s';
+$pwd = 'Dx1AhCmgMnde';
 
 // $user = getenv('DB_USER');
 // $pwd = getenv('DB_PWD');
