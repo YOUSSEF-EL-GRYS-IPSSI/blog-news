@@ -28,6 +28,7 @@ setTimeout(function () {
     deleteButton.addEventListener('click', function (event) {
         event.preventDefault();
         deleteModal.style.display = 'block';
+        console.log('ahhahah');
     });
 
     confirmDelete.addEventListener('click', function () {

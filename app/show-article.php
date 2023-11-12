@@ -52,7 +52,7 @@ if (!$id) {
                 </div>
                 <?php if ($currentUser && $currentUser['id'] === $article['author']) : ?>
                     <div class="action">
-                      
+
                         <a class="btn btn-secondary" id="deleteButton" data-id="<?= $article['id'] ?>" href="/delete-article.php?id=<?= $article['id'] ?>" type="button">Supprimé</a>
 
                         <a class="btn btn-primary" href="/form-article.php?id=<?= $article['id'] ?>">Editer l'article</a>
@@ -62,22 +62,23 @@ if (!$id) {
             </div>
 
         </div>
+        <div id="deleteModal" class="delete-modal">
+            <div class="modal-content">
+                <div class="delete-message">
+                    <img src="./public/img/deleteMessage.svg" alt="">
+                </div>
+                <h2>Confirmation</h2>
+                <p>Êtes-vous sûr de vouloir supprimer votre article?</p>
+                <button id="confirmDelete">Confirmer</button>
+                <button id="cancelDelete">Annuler</button>
+            </div>
+        </div>
         <?php require_once 'includes/footer.php' ?>
     </div>
 
 
 
-    <div id="deleteModal" class="delete-modal">
-        <div class="modal-content">
-            <div class="delete-message">
-                <img src="./public/img/deleteMessage.svg" alt="">
-            </div>
-            <h2>Confirmation</h2>
-            <p>Êtes-vous sûr de vouloir supprimer votre article?</p>
-            <button id="confirmDelete">Confirmer</button>
-            <button id="cancelDelete">Annuler</button>
-        </div>
-    </div>
+
 
 
 
