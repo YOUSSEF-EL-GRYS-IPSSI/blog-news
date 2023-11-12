@@ -70,7 +70,7 @@ if (!$id) {
                 <h2>Confirmation</h2>
                 <p>Êtes-vous sûr de vouloir supprimer votre article?</p>
                 <button id="confirmDelete">Confirmer</button>
-                <button id="cancelDelete">Annuler</button>
+                <button id="cancelDelete">Annuler ?</button>
             </div>
         </div>
         <?php require_once 'includes/footer.php' ?>
